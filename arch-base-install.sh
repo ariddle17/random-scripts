@@ -41,7 +41,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 useradd -m -G wheel -s /bin/bash $USERNAME
 echo "$USERNAME:$PASSWORD" | chpasswd
 echo "root:$PASSWORD" | chpasswd
-sed -i '/%wheel ALL=(ALL) ALL/s/^# //' /etc/sudoers
+echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/10-wheel-group
 
 # Enable networking
 systemctl enable NetworkManager
